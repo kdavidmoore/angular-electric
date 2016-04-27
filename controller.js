@@ -5,7 +5,7 @@ searchApp.controller('searchController', function($scope, $http){
 	// this is the API endpoint
 	var apiUrl = 'http://localhost:3000/search';
 
-	function getAllCars(){
+	function showRandomCar(){
 		// make an http get request that returns all the cars
 		$http({
 			method: 'GET',
@@ -21,16 +21,69 @@ searchApp.controller('searchController', function($scope, $http){
 	}
 
 	// on load, get all cars in the database
-	getAllCars();
+	showRandomCar();
 
 	$scope.isElectric = function(){
-		var carVoted = $scope.carVoted;
-		console.log(carVoted);
+		$http({
+			method: 'POST',
+			url: apiUrl,
+			data: {name: $scope.randomCar}
+		}).then(function successCallback(response){
+			console.log(response);
+			// update the images (cars) collection by 1
+			// db.collection('cars').updateOne(
+			// 	{
+			// 		name: $scope.randomCar
+			// 	},
+			// 	{
+			// 		$inc: {"totalVotes": 1}
+			// 	}, function(error, results){console.log(error);}
+			// );
+
+			// // update the users collection to include the photo voted on, the vote, and the IP address of the user
+			// db.collection('users').insert(
+			// 	{
+			// 		ip: 'me',
+			// 		car: $scope.randomCar,
+			// 		vote: "electric"
+			// 	}, function(error, results){console.log(error);}
+			// );
+			// get another random car
+			showRandomCar();
+		}, function errorCallback(status){
+			console.log(status);
+		});
 	}
 
 	$scope.isNot = function(){
-		var carVoted = $scope.carVoted;
-		console.log(carVoted);
-	}
+		$http({
+			method: 'POST',
+			url: apiUrl,
+			data: {name: $scope.randomCar}
+		}).then(function successCallback(response){
+			console.log(response);
+			// update the images (cars) collection by 1
+			// db.collection('cars').updateOne(
+			// 	{
+			// 		name: $scope.randomCar
+			// 	},
+			// 	{
+			// 		$inc: {"totalVotes": -1}
+			// 	}, function(error, results){console.log(error);}
+			// );
 
+			// // update the users collection to include the photo voted on, the vote, and the IP address of the user
+			// db.collection('users').insert(
+			// 	{
+			// 		ip: 'me',
+			// 		car: $scope.randomCar,
+			// 		vote: "not"
+			// 	}, function(error, results){console.log(error);}
+			// );
+			// get another random car
+			showRandomCar();
+		}, function errorCallback(status){
+			console.log(status);
+		});
+	}
 });
