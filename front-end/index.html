@@ -24,24 +24,24 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="./"> Electric or Not</a>
+			<a class="navbar-brand" ng-href="#!"> Electric or Not</a>
 		</div>
 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li>
-					<a class="active" href="#"><span class="glyphicon glyphicon-print">Vote</span></a>
+					<a class="active" ng-href="#!"><span class="glyphicon glyphicon-print">Vote</span></a>
 				</li>
 				<li>
-					<a class="active" href="#/standings"><span class="glyphicon glyphicon-sort-by-attributes-alt">Standings</span></a>
+					<a class="active" ng-href="./standings.html"><span class="glyphicon glyphicon-sort-by-attributes-alt">Standings</span></a>
 				</li>
 				<li>
-					<a class="active" href="#/add"><span class="glyphicon glyphicon-plus">Add photo</span></a>
+					<a class="active" ng-click="addPhoto()"><span class="glyphicon glyphicon-plus">Add photo</span></a>
 				</li>
 				<li>
-					<form class="new-user" action="#/new" method="post"><input class="btn btn-default navbar-btn" type="submit" value="New User"></form>
+					<input class="btn btn-default navbar-btn" type="button" ng-click="newUser()" value="New User">
 				</li>
 				<li>
-					<form class="new-user" action="#/reset" method="post"><input class="btn btn-default navbar-btn" type="submit" value="Reset Images"></form>
+					<input class="btn btn-default navbar-btn" type="button" ng-click="reset()" value="Reset Images">
 				</li>
 			</ul>
 		</div>
@@ -54,8 +54,8 @@
 			<div class="thumbnail main-gallery">
 				<img ng-src="images/{{randomPhoto}}">
 				<div class="caption">
-					<p><input type="submit" class="btn btn-primary btn-lg" ng-click="isElectric()" value="Electric">
-						<input type="submit" class="btn btn-danger btn-lg" ng-click="isNot()" value="Not"></p>
+					<p><input type="button" class="btn btn-primary btn-lg" ng-click="isElectric()" value="Electric">
+						<input type="button" class="btn btn-danger btn-lg" ng-click="isNot()" value="Not"></p>
 				</div>
 			</div>
 		</div>

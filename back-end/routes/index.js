@@ -79,4 +79,12 @@ router.post('/vote/:voteType', function(req, res, next){
 	}
 });
 
+
+router.get('/reset', function(req, res, next){
+	db.collection('cars').update({}, {$unset: {"totalVotes": ""}}, {multi: true});
+	db.collection('users').drop();
+	res.redirect('/');
+});
+
+
 module.exports = router;

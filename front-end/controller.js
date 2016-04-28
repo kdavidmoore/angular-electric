@@ -13,12 +13,13 @@ electricApp.controller('mainController', function($scope, $http){
 			url: apiUrl + '/vote/electric',
 			data: {name: $scope.randomCar}
 		}).then(function successCallback(response){
-			console.log(response);
+			//console.log(response);
 			showRandomCar();
 		}, function errorCallback(status){
 			console.log(status);
 		});
 	}
+
 
 	$scope.isNot = function(){
 		$http({
@@ -26,12 +27,33 @@ electricApp.controller('mainController', function($scope, $http){
 			url: apiUrl + '/vote/not',
 			data: {name: $scope.randomCar}
 		}).then(function successCallback(response){
-			console.log(response);
+			//console.log(response);
 			showRandomCar();
 		}, function errorCallback(status){
 			console.log(status);
 		});
 	}
+
+
+	$scope.newUser = function(){
+		
+		console.log('creating new user...');
+	
+	}
+
+
+	$scope.reset = function(){
+		$http({
+			method: 'GET',
+			url: apiUrl + '/reset'
+		}).then(function successCallback(response){
+			//console.log(response);
+			showRandomCar();
+		}, function errorCallback(status){
+			console.log(status);
+		});
+	}
+
 
 	function showRandomCar(){
 		// make an http get request that returns all the cars
