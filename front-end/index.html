@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="searchApp">
+<html lang="en" ng-app="electricApp">
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,7 +14,7 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	<script defer src="controller.js"></script>
 </head>
-<body ng-controller="searchController">
+<body ng-controller="mainController">
 <nav class="nav navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -54,12 +54,8 @@
 			<div class="thumbnail main-gallery">
 				<img ng-src="images/{{randomPhoto}}">
 				<div class="caption">
-					<form class="vote-form" ng-submit="isElectric()">
-						<input type="submit" class="btn btn-primary btn-lg" value="Electric">
-					</form>
-					<form class="vote-form" ng-submit="isNot()">
-						<input type="submit" class="btn btn-danger btn-lg" value="Not">
-					</form>
+					<p><input type="submit" class="btn btn-primary btn-lg" ng-click="isElectric()" value="Electric">
+						<input type="submit" class="btn btn-danger btn-lg" ng-click="isNot()" value="Not"></p>
 				</div>
 			</div>
 		</div>
