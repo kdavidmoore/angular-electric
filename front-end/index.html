@@ -12,9 +12,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-	<script defer src="controller.js"></script>
+	<script src="angular-route.min.js"></script>
+	<script defer src="main.module.js"></script>
+
 </head>
-<body ng-controller="mainController">
+<body>
 <nav class="nav navbar-inverse">
 	<div class="container-fluid">
 		<div class="navbar-header">
@@ -29,13 +31,13 @@
 		<div class="collapse navbar-collapse" id="navbar-collapse-1">
 			<ul class="nav navbar-nav">
 				<li>
-					<a class="active" ng-href="#!"><span class="glyphicon glyphicon-print">Vote</span></a>
+					<a class="active" ng-href="#/"><span class="glyphicon glyphicon-print">Vote</span></a>
 				</li>
 				<li>
-					<a class="active" ng-href="./standings.html"><span class="glyphicon glyphicon-sort-by-attributes-alt">Standings</span></a>
+					<a class="active" ng-href="#/standings"><span class="glyphicon glyphicon-sort-by-attributes-alt">Standings</span></a>
 				</li>
 				<li>
-					<a class="active" ng-click="addPhoto()"><span class="glyphicon glyphicon-plus">Add photo</span></a>
+					<a class="active" ng-href="#/upload"><span class="glyphicon glyphicon-plus">Add photo</span></a>
 				</li>
 				<li>
 					<input class="btn btn-default navbar-btn" type="button" ng-click="newUser()" value="New User">
@@ -48,18 +50,8 @@
 	</div>
 </nav>
 
-<div class="container">
-	<div class="row">
-		<div class="col-sm-6 col-sm-offset-3 text-center">
-			<div class="thumbnail main-gallery">
-				<img ng-src="images/{{randomPhoto}}">
-				<div class="caption">
-					<p><input type="button" class="btn btn-primary btn-lg" ng-click="isElectric()" value="Electric">
-						<input type="button" class="btn btn-danger btn-lg" ng-click="isNot()" value="Not"></p>
-				</div>
-			</div>
-		</div>
-	</div>
+<div id="view" ng-view>
+
 </div>
 
 </body>

@@ -1,0 +1,13 @@
+<div class="container" ng-controller="uploadController">
+	<div class="row">
+		<div class="col-sm-4 col-sm-offset-5">
+			<form id="new-photo-form" action="http://localhost:3050/uploads" method="post" enctype="multipart/form-data">
+				<div class="form-group">
+					<label for="uploadBtn">Upload a new photo</label>
+					<input type="file" id="uploadBtn" name="uploadedFile">
+				</div>
+				<input type="submit" class="btn btn-primary" value="Submit">
+			</form>
+		</div>
+	</div>
+</div>

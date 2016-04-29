@@ -1,0 +1,13 @@
+<div class="container" ng-controller="mainController">
+	<div class="row">
+		<div class="col-sm-6 col-sm-offset-3 text-center">
+			<div class="thumbnail main-gallery">
+				<img ng-src="images/{{randomPhoto}}">
+				<div class="caption">
+					<p><input type="button" class="btn btn-primary btn-lg" ng-click="isElectric()" value="Electric">
+						<input type="button" class="btn btn-danger btn-lg" ng-click="isNot()" value="Not"></p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

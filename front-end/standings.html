@@ -1,0 +1,12 @@
+<div class="container" ng-controller="standingsController">
+	<div class="row">
+		<div class="col-sm-12 col-md-4 col-lg-3 text-center" ng-repeat="item in standingsList">
+			<div class="thumbnail standings-gallery">
+				<img ng-src="images/{{item.src}}">
+				<div class="caption">
+					<p>Rating: {{item.totalVotes}}</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

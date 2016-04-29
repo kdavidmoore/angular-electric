@@ -8,6 +8,10 @@ var mongoClient = require('mongodb').MongoClient;
 // var User = require('../models/users');
 // var mongoose = require('mongoose');
 // mongoose.connect(mongoUrl);
+var multer = require('multer');
+var fs = require('fs');
+var upload = multer({dest: 'uploads/'});
+var type = upload.single('uploadedFile');
 
 var mongoUrl = process.env.MONGODB_URI ||
 				process.env.MONGOHQ_URL ||
@@ -19,6 +23,7 @@ mongoClient.connect(mongoUrl, function(error, database){
 	db = database;
 });
 
+
 router.get('/', function(req, res, next){
 	var allCars;
 	// get all cars and put them in an array
@@ -27,6 +32,33 @@ router.get('/', function(req, res, next){
 		res.json(results);
 	});
 });
+
+
+router.post('/uploads', type, function(req, res, next){
+	var targetPath = 'public/images/' + req.file.originalname;
+	fs.readFile(req.file.path, function(error, data){
+		fs.writeFile(targetPath, data, function(error){
+			if(error){
+				res.json('Error: ' + error);
+			} else {
+				res.json('Success!');
+			}
+		});
+	});
+});
+
+
+router.get('/standings', function(req, res, next){
+	// get all the photos
+	db.collection('cars').find().toArray(function(error, results){
+		// sort photos by total votes
+		results.sort(function(a, b){
+			return (b.totalVotes - a.totalVotes);
+		});
+		res.json(results);
+	}); // end query to 'cars' collection
+});
+
 
 router.post('/vote/:voteType', function(req, res, next){
 	if (req.params.voteType == 'electric'){
@@ -74,7 +106,7 @@ router.post('/vote/:voteType', function(req, res, next){
 		// redirect to the home page when done updating collections
 		res.redirect('/');
 	} else{
-		console.log('invalid route');
+		console.log('Error: invalid route');
 		res.redirect('/');
 	}
 });
