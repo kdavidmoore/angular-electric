@@ -1,5 +1,15 @@
-# Electric or Not
+# Electric or Not: Angular Edition
 
-## Re-making the Electric Or Not app using AngularJS as the Front End
+This iteration of the Electric or Not app uses AngularJS to handle the front end.
 
-### This app uses an API created by a completely different Express/Node.js app, which connects to the appropriate MongoDB database. Thus, the Express/Node app must be running for a connection to be made.
+## Features
+* Vote on photos stored as filenames in a database
+* Add new photos to the database
+* View current standings
+* Reset votes
+
+## Technologies Used
+* AngularJS
+* Node.js
+* Express
+* Bootstrap
