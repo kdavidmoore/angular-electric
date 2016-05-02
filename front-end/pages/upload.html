@@ -2,11 +2,20 @@
 	<div class="row">
 		<div class="col-sm-4 col-sm-offset-5">
 			<form id="new-photo-form" action="http://localhost:3050/uploads" method="post" enctype="multipart/form-data">
+
 				<div class="form-group">
 					<label for="uploadBtn">Upload a new photo</label>
-					<input type="file" id="uploadBtn" name="uploadedFile">
+					<input type="file" id="uploadBtn" name="uploadedFile" required>
 				</div>
-				<input type="submit" class="btn btn-primary" value="Submit">
+
+				<div class="form-group">
+					<label for="nameField">Name the car</label>
+					<p>
+						<input type="text" id="nameField" name="carName" required>
+						<input type="submit" class="btn btn-primary" value="Submit">
+					</p>
+				</div>
+
 			</form>
 		</div>
 	</div>

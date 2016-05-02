@@ -2,15 +2,15 @@ var electricApp = angular.module('electricApp', ['ngRoute']);
 
 electricApp.config(function($routeProvider){
 	$routeProvider.when('/',{
-		templateUrl: 'main.html',
+		templateUrl: 'pages/main.html',
 		controller: 'mainController'
 	});
 	$routeProvider.when('/standings',{
-		templateUrl: 'standings.html',
+		templateUrl: 'pages/standings.html',
 		controller: 'standingsController'
 	});
 	$routeProvider.when('/upload',{
-		templateUrl: 'upload.html',
+		templateUrl: 'pages/upload.html',
 		controller: 'uploadController'
 	});
 	// send the user back to the home page if the route is not valid
@@ -60,7 +60,7 @@ electricApp.controller('mainController', function($scope, $http){
 		// make an http get request that returns all the cars
 		$http({
 			method: 'GET',
-			url: apiUrl,
+			url: apiUrl
 		}).then(function successCallback(response){
 			console.log(response);
 			var result = response.data;

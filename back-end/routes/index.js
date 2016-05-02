@@ -25,11 +25,34 @@ mongoClient.connect(mongoUrl, function(error, database){
 
 
 router.get('/', function(req, res, next){
-	var allCars;
+	var photosToShow;
+	var currIP = req.ip;
 	// get all cars and put them in an array
-	db.collection('cars').find().toArray(function(error, results){
-		// send the cars back in JSON form
-		res.json(results);
+	db.collection('cars').find({}).toArray(function(error, results){
+		photosToShow = results;
+	});
+
+	db.collection('users').find({ip: currIP}).toArray(function(error, userResults){
+		var carsVoted = [];
+		if (userResults.length > 0){
+			for (var i=0; i<userResults.length; i++){
+				// push the names of all cars voted on by the curent user
+				carsVoted.push(userResults[i].car);
+			}
+
+			db.collection('cars').find({name: {$nin: carsVoted}}).toArray(function(err, results){
+				if (results.length > 0) {
+					photosToShow = results;
+					// send the cars not voted on to the front-end
+					res.json(photosToShow);
+				} else {
+					res.redirect('/standings');
+				}
+			});
+		} else {
+			// if the current user has not voted, send all the cars to the front-end
+			res.json(photosToShow);
+		}
 	});
 });
 
@@ -45,17 +68,26 @@ router.post('/uploads', type, function(req, res, next){
 			}
 		});
 	});
+
+	db.collection('users').insert(
+		{
+			name: req.body.name,
+			src: req.file.originalname
+		}, function(error, results){
+			if (error) throw error;
+	});
 });
 
 
 router.get('/standings', function(req, res, next){
 	// get all the photos
 	db.collection('cars').find().toArray(function(error, results){
+		var sortedResults = results;
 		// sort photos by total votes
-		results.sort(function(a, b){
-			return (b.totalVotes - a.totalVotes);
+		sortedResults.sort(function(a, b){
+			return a.totalVotes - b.totalVotes;
 		});
-		res.json(results);
+		res.json(sortedResults.reverse());
 	}); // end query to 'cars' collection
 });
 
