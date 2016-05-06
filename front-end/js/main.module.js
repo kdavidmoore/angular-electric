@@ -1,4 +1,6 @@
 var electricApp = angular.module('electricApp', ['ngRoute']);
+const apiUrl = 'http://localhost:3050';
+
 
 electricApp.config(function($routeProvider){
 	$routeProvider.when('/',{
@@ -20,9 +22,6 @@ electricApp.config(function($routeProvider){
 });
 
 electricApp.controller('mainController', function($scope, $http){
-	// connect to the Expresss/Node app that's already running
-	// this is the API endpoint
-	var apiUrl = 'http://localhost:3000';
 	// on load, get all cars in the database
 	showRandomCar();
 
@@ -90,7 +89,6 @@ electricApp.controller('mainController', function($scope, $http){
 
 
 electricApp.controller('standingsController', function($scope, $http){
-	var apiUrl = 'http://localhost:3000';
 	
 	$scope.getStandings = function(){
 		$http({
