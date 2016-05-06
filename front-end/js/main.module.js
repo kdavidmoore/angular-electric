@@ -1,5 +1,5 @@
 var electricApp = angular.module('electricApp', ['ngRoute']);
-const apiUrl = 'http://www.kdavidmoore.com:3050';
+const apiUrl = 'http://ec2-54-173-79-101.compute-1.amazonaws.com:3050';
 
 
 electricApp.config(function($routeProvider){
